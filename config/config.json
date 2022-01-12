@@ -1,0 +1,13 @@
+{
+  "development": {
+  "host": "localhost",
+  "username": "postgres",
+  "password": null,
+  "database": "Users",
+  "dialect": "postgres"
+},
+
+"production": {
+  "use_env_variable": "DATABASE_URL"
+}
+}

@@ -9,6 +9,7 @@ const store = new SequelizeStore({ db: db.sequelize })
 
 const gamesRouter = require('./routes/api/games');
 const usersApiRouter = require('./routes/api/users');
+const historiesRouter = require('./routes/api/histories');
 
 const app = express();
 
@@ -33,5 +34,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/games', gamesRouter);
 app.use('/api/v1/users', usersApiRouter);
+app.use('/api/v1/game_histories', historiesRouter);
 
 module.exports = app;

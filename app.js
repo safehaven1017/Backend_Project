@@ -1,22 +1,37 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const logger = require('morgan');
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
+const db = require('./models')
+const store = new SequelizeStore({ db: db.sequelize })
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var gamesRouter = require('./routes/api/games');
+const gamesRouter = require('./routes/api/games');
+const usersApiRouter = require('./routes/api/users');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  session({
+    secret: 'secret', // used to sign the cookie
+    resave: false, // update session even w/ no changes
+    saveUninitialized: true, // always create a session
+    cookie: {
+      secure: false, // true: only accept https req's
+      maxAge: 2592000000, // time in seconds
+    },
+    store: store
+  })
+);
+store.sync();
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api/v1/games', gamesRouter);
+app.use('/api/v1/users', usersApiRouter);
 
 module.exports = app;

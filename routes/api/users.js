@@ -85,12 +85,12 @@ router.post('/login', (req, res) => {
   })
 })
 
-// router.get('/logout', (req, res) => {
-//   req.session.user = null;
-//   res.json({
-//     success: 'user logged out'
-//   })
-// })
+router.get('/logout', (req, res) => {
+  req.session.user = null;
+  res.json({
+    success: 'user logged out'
+  })
+})
 
 // // get public user profile information
 // router.get('/:userId/profile', (req, res) => {

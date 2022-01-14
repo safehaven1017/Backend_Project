@@ -9,28 +9,29 @@ axios.get('https://opentdb.com/api_category.php')
         }).join('')
     })
 
-    
 
 
-const choices = [Easy, Medium, Hard]
+
 const difficulty = document.querySelector('#difficulty');
 
-difficulty.innerHTML = `<option>${choice}`
 
+const main = document.querySelector('.main')
+const categories = document.querySelector("#categories")
 
+document.addEventListener('click', e => {
+    // if the click happened on a .logout-button
+    if (e.target.classList.contains('newGame')) {
+      // tell the backend to logout
+      console.log(document.querySelector('#categories').value, document.querySelector('#difficulty').value)
+      axios.post(`/api/v1/games/new_game`, {
+        category: document.querySelector('#categories').value,
+        difficulty: document.querySelector('#difficulty').value,
+    })
+      .then((game) => {
+        window.location = `/newGame.html?${game.data.id}`
+        })
+    }
+  })
 
-
-
-// document.addEventListener('click', e => {
-//     // if the click happened on a .logout-button
-//     if (e.target.classList.contains('newGame')) {
-//       // tell the backend to logout
-//       axios.get('/new_game')
-//       .then(() => {
-
-
-//         })
-//     }
-//   })
-
+  
 // one event listener, if the correct answer includes class of ".correctAnswer" then move to next question

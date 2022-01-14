@@ -20,6 +20,7 @@ registerForm.addEventListener('submit', (e) => {
         password: document.querySelector('#password').value
     })
         .then(res => {
+            console.log(document.querySelector('#username').value)
             alert('User created successfully')
             window.location = '/login.html'
         })

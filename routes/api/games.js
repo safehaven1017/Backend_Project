@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const models = require('../../models');
 const axios = require('axios');
-const res = require('express/lib/response');
 
 // route to get all games
 router.get('/all_games', (req, res) => {

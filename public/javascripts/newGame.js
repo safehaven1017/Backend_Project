@@ -4,8 +4,9 @@ const id = new URLSearchParams(location.search).get('id');
 // display first question & give next question
 let questionNumber = 0;
 const userAnswers = [];
-const startDate = new Date(); 
-console.log(startDate.getTime())
+const startDate = new Date();
+var myModal = new bootstrap.Modal(document.querySelector(".modal"));
+
 
 
 
@@ -81,17 +82,20 @@ axios.get(`/api/v1/games/${id}`)
                     userAnswers.push(e.target.innerHTML);
                 }
                 if (questionNumber >= game.data.questions.length) {
+                    
                     let score = 0;
                     const endDate = new Date();
-                    console.log(endDate.getTime())
+                    console.log(endDate.getTime());
                     const gameTime = endDate.getTime() - startDate.getTime();
-                    console.log(gameTime)
+                    console.log(gameTime);
                     game.data.questions.forEach((question, index) => {
                         if (question.correct_answer == userAnswers[index]) {
                             score++;
                             console.log(question.correct_answer)
                         }
                     });
+                    document.querySelector("#staticBackdropLabel").innerHTML = `score: ${score}/${game.data.questions.length}`;
+                    myModal.toggle();
                     console.log(userAnswers, score)
                 }
             }

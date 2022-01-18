@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const models = require('../../models');
 
+// add history of game user just completed
 router.post('/add_history', (req, res) => {
     models.History.create({
         score: req.body.score,
@@ -15,6 +16,7 @@ router.post('/add_history', (req, res) => {
     })
 })
 
+// rate a game user just completed
 router.patch('/rate_game/:id', (req, res) => {
     models.History.update(
         {
@@ -34,6 +36,7 @@ router.patch('/rate_game/:id', (req, res) => {
     })
 })
 
+// fetch recent games
 router.get('/recent', (req, res) => {
     const page = req.query.page || 1;
     const limit = req.query.count || 1;
@@ -52,6 +55,24 @@ router.get('/recent', (req, res) => {
             }
         }
     }).then(histories => {
+        res.json(histories);
+    })
+})
+
+// fetch all games associated with user id
+router.get('/:id', (req, res) => {
+    models.History.findAll({
+        order: [['createdAt', 'DESC']],
+        include: {
+            model: models.Game,
+            // to use exclude, must use an object as value
+            attributes: {
+                exclude: ['questions']
+            }
+        },
+        where: { UserId: req.params.id } 
+    })
+    .then(histories => {
         res.json(histories);
     })
 })

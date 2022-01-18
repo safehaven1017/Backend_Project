@@ -92,6 +92,17 @@ router.get('/logout', (req, res) => {
   })
 })
 
+// get username of one user
+router.get('/:id', (req, res) => {
+  models.User.findOne({
+    attributes: ['username'],
+    where: { id: req.params.id }
+  })
+  .then(user => {
+    res.json(user);
+  })
+})
+
 // // get public user profile information
 // router.get('/:userId/profile', (req, res) => {
 //   // find user with if from route

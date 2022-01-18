@@ -30,3 +30,27 @@ body {
   border-radius: 25px;
 }
 
+#createNew {
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+
+#displayQuestion {
+display: flex;
+justify-content: center;
+padding: 30px;
+border: 2px solid rgb(15, 219, 8);
+font-size: 23px;
+}
+
+#answers {
+display: flex;
+flex-direction: column;
+padding: 10px;
+margin: 10px;
+border: 2px solid blue;
+}

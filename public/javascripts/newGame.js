@@ -3,6 +3,7 @@ const id = new URLSearchParams(location.search).get('id');
 
 // display first question & give next question
 let questionNumber = 0;
+const DEFAULT_SECONDS = 15;
 const userAnswers = [];
 const startDate = new Date();
 var myModal = new bootstrap.Modal(document.querySelector(".modal"));
@@ -35,10 +36,8 @@ function displayQuestion(question, correct_answer, incorrect_answers) {
         }
     }).join('');
 }
-// create event listener for users answers
-// give feedback for incorrect or correct answer
-// trigger end game after questions are completed
-let time = 15;
+
+let time = DEFAULT_SECONDS;
 axios.get(`/api/v1/games/${id}`)
 
     .then(game => {
@@ -56,7 +55,7 @@ axios.get(`/api/v1/games/${id}`)
             if (time == 0) {
                 questionNumber++;
                 updateQuestion();
-                time = 15;
+                time = DEFAULT_SECONDS;
                 return
             } else if (questionNumber > game.data.questions.length - 1) {
                 clearInterval(interval);
@@ -64,7 +63,7 @@ axios.get(`/api/v1/games/${id}`)
                 return
             }
             document.querySelector("#timer").innerHTML = time;
-            time -= 1;
+            time--;
         }
         updateQuestion();
         let interval = setInterval(() => { timer() }, 1000);
@@ -75,7 +74,7 @@ axios.get(`/api/v1/games/${id}`)
                 if (questionNumber < game.data.questions.length) {
                     updateQuestion();
                     clearInterval(interval);
-                    time = 5;
+                    time = DEFAULT_SECONDS;
                     interval = setInterval(() => { timer() }, 1000);
                 }
                 if (questionNumber <= game.data.questions.length) {

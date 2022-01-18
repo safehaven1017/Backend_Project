@@ -53,7 +53,7 @@ axios.get(`/api/v1/users/${id}`)
                     <div class="modal-dialog modal-lg modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <h4>${game.data.name}</h4>
+                                <h4>${game.data.name || 'UNNAMED'}</h4>
                                 <ol class="list-group list-group-numbered" id="history${history.id}"></ol>
                             </div>
                         </div>

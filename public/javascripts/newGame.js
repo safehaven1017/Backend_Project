@@ -4,7 +4,7 @@ const id = new URLSearchParams(location.search).get('id');
 // set initial variables: questionNumber to track game progress, DEFAULT_SECONDS to determine length of timer,
 // userAnswers to track answers, startDate to track game duration
 let questionNumber = 0;
-const DEFAULT_SECONDS = 15;
+const DEFAULT_SECONDS = 5;
 const userAnswers = [];
 const startDate = new Date();
 
@@ -59,11 +59,7 @@ axios.get(`/api/v1/games/${id}`)
         function timer() {
             // if time is 0, push an incorrect answer, trigger click event, and move on to next question
             if (time == 0) {
-                questionNumber++;
-                userAnswers.push(null);
                 document.querySelector('#timer-click').click();
-                updateQuestion();
-                time = DEFAULT_SECONDS;
                 return
             // stop timer if game is finished
             } else if (questionNumber > game.data.questions.length - 1) {
@@ -96,6 +92,7 @@ axios.get(`/api/v1/games/${id}`)
                 }
                 // conditions for end of the game
                 if (questionNumber >= game.data.questions.length) {
+                    console.log(userAnswers)
                     // clear timer interval
                     clearInterval(interval);
                     // calculate game duration

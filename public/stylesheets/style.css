@@ -30,27 +30,75 @@ body {
   border-radius: 25px;
 }
 
-#createNew {
-  border: 2px solid red;
+/* #parent {
+  display: flex;
+} */
+
+
+#timer {
   display: flex;
   justify-content: center;
+  margin: 0 auto;
+  width: 10%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: white;
+}
+
+#createNew {
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: center;
+  align-content: center;
   flex-direction: column;
   width: 50%;
-  margin: 0 auto;
+  height: 100%;
+  margin: auto;
+  margin-top: 200px;
+  border-radius: 25px;
+  background-color: rgb(107, 144, 212);
 }
 
 #displayQuestion {
-display: flex;
-justify-content: center;
+margin: 0 auto;
 padding: 30px;
-border: 2px solid rgb(15, 219, 8);
+/* border: 2px solid rgb(15, 219, 8); */
 font-size: 23px;
 }
 
+.answer {
+  text-align: center;
+  padding: 5px;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 40%;
+  border-radius: 30px;
+  
+}
+
 #answers {
-display: flex;
+  display: flex;
 flex-direction: column;
 padding: 10px;
 margin: 10px;
-border: 2px solid blue;
+/* border: 2px solid blue; */
+}
+
+.answer:hover {
+  background-color: rgb(255, 255, 255);
+
+}
+
+.correct:focus {     
+  background-color:rgb(134, 241, 134);    
+}
+
+.incorrect:active {     
+  background-color:rgb(235, 104, 134);    
+}
+
+#saveGame {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
 }

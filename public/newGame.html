@@ -36,15 +36,23 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-center" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title m-auto" id="staticBackdropLabel">Modal title</h5>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form id="saveGame">
+                        <label for="gameName">Name Your Game:</label>
+                        <input type="text" id="gameName">
+                        <br>
+                        <label for="rating">Fun Rating:</label>
+                        <input type="number" id="rating" min="1" max="5" step="1">
+                        <br>
+                        <input type="submit" value="Save">
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary again">Play Again</button>
-                    <button type="button" class="btn btn-primary new">New Game</button>
-                    <button type="button" class="btn btn-primary finish">Finish</button>
+                <div class="modal-footer m-auto p-15px">
+                    <button type="button" class="btn btn-primary again bg-dark">Play Again</button>
+                    <button type="button" class="btn btn-primary new bg-dark">New Game</button>
+                    <button type="button" class="btn btn-primary finish bg-dark">Finish</button>
 
                 </div>
             </div>

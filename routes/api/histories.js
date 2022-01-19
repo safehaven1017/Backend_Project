@@ -6,6 +6,7 @@ const models = require('../../models');
 router.post('/add_history', (req, res) => {
     models.History.create({
         score: req.body.score,
+        userFunRating: req.body.userFunRating,
         answers: req.body.answers,
         userPlayTime: req.body.userPlayTime,
         GameId: req.body.GameId,
@@ -16,7 +17,7 @@ router.post('/add_history', (req, res) => {
     })
 })
 
-// rate a game user just completed
+// rate a game after game has already been completed
 router.patch('/rate_game/:id', (req, res) => {
     models.History.update(
         {

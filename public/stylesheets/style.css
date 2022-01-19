@@ -84,8 +84,12 @@ margin: 10px;
 /* border: 2px solid blue; */
 }
 
+.answer:hover {
+  background-color: rgb(255, 255, 255);
 
-.correct:active {     
+}
+
+.correct:focus {     
   background-color:rgb(134, 241, 134);    
 }
 
@@ -93,3 +97,8 @@ margin: 10px;
   background-color:rgb(235, 104, 134);    
 }
 
+#saveGame {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}

@@ -59,11 +59,7 @@ axios.get(`/api/v1/games/${id}`)
         function timer() {
             // if time is 0, push an incorrect answer, trigger click event, and move on to next question
             if (time == 0) {
-                questionNumber++;
-                userAnswers.push(null);
                 document.querySelector('#timer-click').click();
-                updateQuestion();
-                time = DEFAULT_SECONDS;
                 return
             // stop timer if game is finished
             } else if (questionNumber > game.data.questions.length - 1) {

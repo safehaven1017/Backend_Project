@@ -54,6 +54,8 @@ axios.get(`/api/v1/games/${id}`)
         function timer() {
             if (time == 0) {
                 questionNumber++;
+                userAnswers.push(null);
+                document.querySelector('#timer-click').click();
                 updateQuestion();
                 time = DEFAULT_SECONDS;
                 return
@@ -81,7 +83,7 @@ axios.get(`/api/v1/games/${id}`)
                     userAnswers.push(e.target.innerHTML);
                 }
                 if (questionNumber >= game.data.questions.length) {
-                    
+                    clearInterval(interval);
                     let score = 0;
                     const endDate = new Date();
                     console.log(endDate.getTime());
@@ -96,6 +98,10 @@ axios.get(`/api/v1/games/${id}`)
                     document.querySelector("#staticBackdropLabel").innerHTML = `score: ${score}/${game.data.questions.length}`;
                     myModal.toggle();
                     console.log(userAnswers, score)
+                    document.querySelector('.again').addEventListener('click', () => {
+                        window.location = `/newGame.html?id=${id}`;
+                    })
+
                 }
             }
         })

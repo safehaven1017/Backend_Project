@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const models = require('../../models');
 const Sequelize = require('sequelize');
-
 // add history of game user just completed
 router.post('/add_history', (req, res) => {
     models.History.create({
@@ -17,7 +16,6 @@ router.post('/add_history', (req, res) => {
             res.json(history);
         })
 })
-
 // rate a game after game has already been completed
 router.patch('/rate_game/:id', (req, res) => {
     models.History.update(
@@ -37,7 +35,6 @@ router.patch('/rate_game/:id', (req, res) => {
             }
         })
 })
-
 // fetch games
 router.get('/recent', (req, res) => {
     const page = req.query.page || 1;
@@ -69,14 +66,13 @@ router.get('/recent', (req, res) => {
             let sum = 0
             history.Game.Histories.forEach(hist => {
                 sum += hist.score;
-            }) 
-            history.Game.difficulty = Math.round(sum/history.Game.Histories.length);  
+            })
+            history.Game.difficulty = Math.round(sum / history.Game.Histories.length);
             return history
         })
         res.json(historyData);
     })
 })
-
 // fetch all games associated with user id
 router.get('/:id', (req, res) => {
     models.History.findAll({
@@ -94,6 +90,4 @@ router.get('/:id', (req, res) => {
             res.json(histories);
         })
 })
-
-
 module.exports = router;

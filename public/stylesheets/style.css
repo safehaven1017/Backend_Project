@@ -13,14 +13,33 @@
 .welcomeMessage {
   position: relative;
   background-color: none;
-  width: 1200px;
-  border: 1px black;
-  padding: 50px;
-  margin: 20px;
-  color: #dc3545;
-  left: 550px;
-  top: 150px;
-  font-size: 25px;
+  color: #fdfeed;
+  left: 30%;
+  margin-top: 12%;
+  font-size: 3vh;
+}
+
+#loginForm {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin: 15% 0% 15% 45%;
+  padding: 10px;
+  color: #fdfde3;
+  border: 2px solid #fdfde3;
+  box-shadow: 60px -16px #fdfde3;
+}
+
+
+#registerForm {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin: 15% 0% 15% 45%;
+  padding: 10px;
+  color: #fdfde3;
+  border: 2px solid #fdfde3;
+  box-shadow: 60px -16px #fdfde3;
 }
 
 .trivia {
@@ -48,8 +67,8 @@
 
 .center {
   margin: 0;
-  position: absolute;
-  top: 50%;
+  position: relative;
+  top: 10%;
   left: 50%;
   /* -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); */

@@ -46,6 +46,11 @@ let time = DEFAULT_SECONDS;
 // fetching game from database
 axios.get(`/api/v1/games/${id}`)
     .then(game => {
+        // if game is already named, remove naming elements from modal
+        if (game.data.name) {
+            document.querySelector('#game-label').remove();
+            document.querySelector('#gameName').remove();
+        }
 
         // function used to display different question each time user answers question or timer runs out
         function updateQuestion() {
@@ -61,11 +66,7 @@ axios.get(`/api/v1/games/${id}`)
         function timer() {
             // if time is 0, push an incorrect answer, trigger click event, and move on to next question
             if (time == 0) {
-                questionNumber++;
-                userAnswers.push(null);
                 document.querySelector('#timer-click').click();
-                updateQuestion();
-                time = DEFAULT_SECONDS;
                 return
                 // stop timer if game is finished
             } else if (questionNumber > game.data.questions.length - 1) {
@@ -105,15 +106,61 @@ axios.get(`/api/v1/games/${id}`)
                     const gameTime = endDate.getTime() - startDate.getTime();
                     // calculate score by comparing user answers to question array correct_answers
                     let score = 0;
+                    // open trivia api answers include html escapes. we must remove them by inserting the answers into an html element
+                    const answerDiv = document.createElement('div');
                     game.data.questions.forEach((question, index) => {
-                        if (question.correct_answer == userAnswers[index]) {
+                        answerDiv.innerHTML = question.correct_answer;
+                        if (answerDiv.innerHTML == userAnswers[index]) {
                             score++;
-                            console.log(question.correct_answer)
                         }
                     });
+
+                    let gameName = game.data.name;
+
                     // put score on modal, and display modal
                     document.querySelector("#staticBackdropLabel").innerHTML = `score: ${score}/${game.data.questions.length}`;
                     myModal.toggle();
+
+                    // setting conditions for if game doesn't have a name
+                    if (!gameName) { 
+                        document.querySelector('#gameName').addEventListener('change', e => {
+                            if (e.target.value.replace( /\s/g, '') == '') {
+                                e.target.setCustomValidity('a name with only spaces is invalid');
+                            } else {
+                                e.target.setCustomValidity('');
+                            }  
+                        })
+                    } else {
+                        document.querySelector('#end-message').innerHTML = 'Please rate this game!';
+                    }
+                    // event listener for save button. Will only submit if both fields are completed
+                    document.querySelector('#saveGame').addEventListener('submit', e => {
+                        e.preventDefault();
+                        // name completed game if not already named
+                        if (!gameName) {
+                            gameName = document.querySelector('#gameName').value;
+                            axios.patch(`/api/v1/games/${id}`, {
+                                name: gameName
+                            }).then(res => {
+                                console.log(res);
+                            })
+                        }
+                        // create history
+                        let funRating = document.querySelector('#rating').value;
+                        axios.post(`/api/v1/game_histories/add_history`, {
+                            score: score,
+                            userFunRating: funRating,
+                            answers: userAnswers,
+                            userPlayTime: gameTime,
+                            GameId: id
+                        }).then(res => {
+                            document.querySelector('#end-message').innerHTML = `The game '${gameName}' has been saved. Thanks for playing!`
+                            document.querySelector('#save-button').classList.add('d-none');
+                            document.querySelector('#save-button').setAttribute('disabled', 'disabled');
+                        })
+
+                    })
+
                     // link to restart game
                     document.querySelector('.again').addEventListener('click', () => {
                         window.location = `/newGame.html?id=${id}`;
@@ -130,11 +177,3 @@ axios.get(`/api/v1/games/${id}`)
             }
         })
     })
-
-
-
-
-
-
-
-

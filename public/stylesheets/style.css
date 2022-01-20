@@ -168,27 +168,6 @@
   border-bottom-right-radius: -10px;
   background-color: rgb(243, 246, 21);
 }
-.one:active{
-  border: 2px solid green;
-}
-
-.red:active {
-  border: 2px solid red;
-}
-
-.feedback {
-  display: flex;
-  flex-direction: row;
-  margin:unset;
-}
-
-.circle {
-  border-radius: 50%;
-  width: 2%;
-  height: 2%;
-  background-color: white;
-  padding: 1%;
-}
 
 
 #displayQuestion {

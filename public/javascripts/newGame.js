@@ -178,25 +178,3 @@ axios.get(`/api/v1/games/${id}`)
             }
         })
     })
-
-
-    document.querySelector(".one").style.backgroundColor = 'white';
-    function one (el) {
-      if (el.style.backgroundColor === 'white' && correct_answer == true) {
-        el.style.backgroundColor = 'green';   
-      }
-      else el.style.backgroundColor = 'red';
-    }
-
-
-    // setTimout(()=> {do stuff here}, 1000)
-
-
-    // document.addEventListener("click", (e) => {
-    //     if (e.target.classList.contains("correct_answer")) {
-    //     document.querySelector(".one").classList.add("green") 
-    //     } else {
-    //         document.querySelector(".one").classList.add("red") 
-    
-    //     }
-    // });

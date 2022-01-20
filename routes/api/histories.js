@@ -35,10 +35,11 @@ router.patch('/rate_game/:id', (req, res) => {
             }
         })
 })
-// fetch games
+
+// fetch recent games
 router.get('/recent', (req, res) => {
     const page = req.query.page || 1;
-    const limit = req.query.count || 1;
+    const limit = req.query.count || 20;
     const offset = (page - 1) * limit;
     // find all with search params
     models.History.findAll({
@@ -50,7 +51,7 @@ router.get('/recent', (req, res) => {
         include: {
             include: {
                 model: models.History,
-                attributes: ['score']
+                attributes: ['score', 'userFunRating']
             },
             // group: ["History.GameId"],
             model: models.Game,
@@ -63,11 +64,58 @@ router.get('/recent', (req, res) => {
     }).then(histories => {
         const historyData = histories.map(history => {
             history = history.get({ plain: true })
-            let sum = 0
+            let difficultySum = 0;
+            let funSum = 0;
             history.Game.Histories.forEach(hist => {
-                sum += hist.score;
-            })
-            history.Game.difficulty = Math.round(sum / history.Game.Histories.length);
+                difficultySum += hist.score;
+                funSum += hist.userFunRating || 0;
+                console.log(hist);
+            }) 
+            history.Game.difficulty = Math.round(difficultySum/history.Game.Histories.length);  
+            history.Game.avgFunRating = Math.round(funSum/history.Game.Histories.length);  
+            return history
+        })
+        res.json(historyData);
+    })
+})
+
+// fetch leaderboard games
+router.get('/leaderboard', (req, res) => {
+    const page = req.query.page || 1;
+    const limit = req.query.count || 20;
+    const offset = (page - 1) * limit;
+    // find all with search params
+    models.History.findAll({
+        order: [['score', 'DESC'],['userPlayTime', 'ASC']],
+        limit,
+        offset,
+        // group: ["History.GameId", "History.id", "Game.id"],
+        // including 'Game' object model, with its own properties
+        include: {
+            include: {
+                model: models.History,
+                attributes: ['score', 'userFunRating']
+            },
+            // group: ["History.GameId"],
+            model: models.Game,
+            // to use exclude, must use an object as value
+            attributes: {
+                // include: [[Sequelize.fn('avg', Sequelize.col('History.score')), 'difficulty']],
+                exclude: ['questions']
+            },
+            order: [models.Game, 'category', 'DESC']
+        }
+    }).then(histories => {
+        const historyData = histories.map(history => {
+            history = history.get({ plain: true })
+            let difficultySum = 0;
+            let funSum = 0;
+            history.Game.Histories.forEach(hist => {
+                difficultySum += hist.score;
+                funSum += hist.userFunRating || 0;
+            }) 
+            history.Game.difficulty = Math.round(difficultySum/history.Game.Histories.length);  
+            history.Game.avgFunRating = Math.round(funSum/history.Game.Histories.length);  
             return history
         })
         res.json(historyData);

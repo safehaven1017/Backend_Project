@@ -38,7 +38,7 @@ router.patch('/rate_game/:id', (req, res) => {
         })
 })
 
-// fetch recent games
+// fetch games
 router.get('/recent', (req, res) => {
     const page = req.query.page || 1;
     const limit = req.query.count || 1;

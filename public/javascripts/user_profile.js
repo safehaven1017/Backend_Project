@@ -1,3 +1,8 @@
+// redirect home if logged out
+if (!user) {
+    window.location = '/logout_redirect.html';
+}
+
 // get id out of URL query parameters
 const id = new URLSearchParams(location.search).get('id');
 
@@ -40,9 +45,9 @@ function renderUserHistory(searchParams) {
     document.querySelector('#games-container').innerHTML = ''
     // fetching user by id
     axios.get(`/api/v1/users/${id}`)
-    .then(user => {
+    .then(userData => {
         // display username
-        document.querySelector('#username').innerHTML = `Account: ${user.data.username}`;
+        document.querySelector('#username').innerHTML = `Account: ${userData.data.username}`;
         // getting game history
         axios.get(`/api/v1/game_histories/${id}${searchParams}`)
         .then(histories => {

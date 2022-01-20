@@ -53,6 +53,11 @@ function renderLeaderboard(linkString) {
     })
 }
 
+// redirect home if logged out
+if (!user) {
+    window.location = '/logout_redirect.html';
+  }
+
 // fetch categories
 axios.get('https://opentdb.com/api_category.php')
 .then(res => {

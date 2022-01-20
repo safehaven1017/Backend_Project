@@ -31,9 +31,11 @@ function displayQuestion(question, correct_answer, incorrect_answers) {
     document.querySelector('#displayQuestion').innerHTML = question;
     document.querySelector('#answers').innerHTML = shuffledAnswers.map(answer => {
         if (answer == correct_answer) {
-            return `<button class="answer correct">${answer}</button>`
+            return `<hr style="height:4px; color:rgb(0, 112, 163); width:100%; margin-left: -56px; margin-right: 100px;">
+            <button class="answer correct">${answer}</button>`
         } else {
-            return `<button class="answer incorrect">${answer}</button>`
+            return `        <hr style="height:4px; color:rgb(0, 112, 163); width:100%; margin-left: -56px; margin-right: -56px;">
+            <button class="answer incorrect">${answer}</button>`
         }
     }).join('');
 }

@@ -1,7 +1,6 @@
 .gameBody {
   background-image: url("cork-board.png");
 }
-
 .navbar {
   background-color: black;
 }
@@ -41,11 +40,14 @@ body {
 }
 
 
+
 .navbar-nav{
   text-size-adjust: 100px;
   display: flex;
   align-items: center;
 }
+
+
 
 .main {
   display: flex;
@@ -86,6 +88,16 @@ body {
   border: 1px solid rgb(0, 0, 0);
   margin: -29px 0px 0px -23px;
   background-color: red ;
+}
+
+.needle {
+  width: 6px;
+  height: 22px;
+  border-radius: 20px;
+  border: 1px solid rgb(0, 0, 0);
+  border-top-right-radius: 100%;
+  margin: 0px 0px 0px 340px;
+  background-color: rgb(117, 116, 116) ;
 }
 
 .needle {

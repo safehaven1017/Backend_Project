@@ -36,10 +36,10 @@ function displayQuestion(question, correct_answer, incorrect_answers) {
     document.querySelector('#displayQuestion').innerHTML = question;
     document.querySelector('#answers').innerHTML = shuffledAnswers.map(answer => {
         if (answer == correct_answer) {
-            return `<hr style="height:4px; color:rgb(0, 112, 163); width:100%; margin-left: -56px; margin-right: 100px;">
+            return `<hr class="line"; style="height:4px; color:rgb(0, 112, 163);">
             <button class="answer correct">${answer}</button>`
         } else {
-            return `        <hr style="height:4px; color:rgb(0, 112, 163); width:100%; margin-left: -56px; margin-right: -56px;">
+            return `        <hr class="line"; style="height:4px; color:rgb(0, 112, 163);">
             <button class="answer incorrect">${answer}</button>`
         }
     }).join('');
@@ -89,6 +89,7 @@ axios.get(`/api/v1/games/${id}`)
 
         // event listener for clicking answers
         document.addEventListener("click", (e) => {
+            
             if (e.target.classList.contains("answer")) {
                 questionNumber++;
                 // if game is not finished, move on to the next question

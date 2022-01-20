@@ -7,7 +7,7 @@ function renderQuestions(questions, answers, historyId) {
         // this section generates the question and the correct answer
         document.querySelector(`#history${historyId}`).innerHTML += `<li class="list-group-item">
             <ol class="list-group list-group-flush" id="history${historyId}-question${index}">
-                <h5>${question.question}</h5>
+                <h5>${(answers[index] == '') ? question.question + `<span style="color: red;">*</span>`: question.question}</h5>
                 <li class="list-group-item list-group-item-success">${question.correct_answer}</li>
             </ol>
         </li>`;
@@ -42,7 +42,7 @@ axios.get(`/api/v1/users/${id}`)
             <td>${history.Game.category}</td>
             <!-- Button trigger modal -->
             <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalGame${history.Game.id}">Questions and Answers</button></td>
-            <td><button type="button" class="btn btn-primary">Play Again</button></td>
+            <td><a href="/newGame.html?id=${history.Game.id}"><button type="button" class="btn btn-primary">Play Again</button></td>
             </tr>`;
             // get the game data for each history. this will allow us to populate the questions and answers section
             // the questions and answers are displayed with a modal
@@ -54,6 +54,7 @@ axios.get(`/api/v1/users/${id}`)
                         <div class="modal-content">
                             <div class="modal-body">
                                 <h4>${game.data.name || 'UNNAMED'}</h4>
+                                <p>&quot;<span style="color: red;">*</span>&quot; means that the question was left unanswered.</p>
                                 <ol class="list-group list-group-numbered" id="history${history.id}"></ol>
                             </div>
                         </div>

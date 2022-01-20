@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="leaderboardPage">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
         <a class="navbar-brand">RNJ TRIVIA</a>
@@ -23,8 +23,57 @@
         </div>
         </div>
     </nav>
+
+    <div class="filterParams">
+        <form class="d-flex flex-column justify-content-center">
+            <label for="categories">Choose a Category:</label>
+            <select name="categories" id="categories">
+                <option value="Any Category">Any Category</option>
+            </select>
+            <label for="difficulty">Choose a Difficulty:</label>
+            <select name="difficulty" id="difficulty">
+                <option value="Any Difficulty">Any Difficulty</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <br>
+            <button type="submit" class="leaderboardGame">Search Leaderboard</button>
+        </form>
+    </div>
+
+
+    <div class="divTable">
+        <div class="divTableBody">
+        <div class="divTableRow">
+        <div class="divTableCell">Name</div>
+        <div class="divTableCell">Difficulty</div>
+        <div class="divTableCell">Fun Rating</div>
+        <div class="divTableCell">Play Time</div>
+        <div class="divTableCell">User Name</div>
+        </div>
+        <div class="divTableRow">
+        <div class="divTableCell">&nbsp;</div>
+        <div class="divTableCell">&nbsp;</div>
+        <div class="divTableCell">&nbsp;</div>
+        <div class="divTableCell">&nbsp;</div>
+        <div class="divTableCell">&nbsp;</div>
+        </div>
+        <div class="divTableRow">
+        <div class="divTableCell">&nbsp;</div>
+        <div class="divTableCell">&nbsp;</div>
+        <div class="divTableCell">&nbsp;</div>
+        <div class="divTableCell">&nbsp;</div>
+        <div class="divTableCell">&nbsp;</div>
+        </div>
+        </div>
+        </div>
+
+   
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="./javascripts/leaderboard.js"></script>
+
 </body>
 
 </html>

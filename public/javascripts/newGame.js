@@ -31,9 +31,11 @@ function displayQuestion(question, correct_answer, incorrect_answers) {
     document.querySelector('#displayQuestion').innerHTML = question;
     document.querySelector('#answers').innerHTML = shuffledAnswers.map(answer => {
         if (answer == correct_answer) {
-            return `<button class="answer correct">${answer}</button>`
+            return `<hr style="height:4px; color:rgb(0, 112, 163); width:100%; margin-left: -56px; margin-right: 100px;">
+            <button class="answer correct">${answer}</button>`
         } else {
-            return `<button class="answer incorrect">${answer}</button>`
+            return `        <hr style="height:4px; color:rgb(0, 112, 163); width:100%; margin-left: -56px; margin-right: -56px;">
+            <button class="answer incorrect">${answer}</button>`
         }
     }).join('');
 }
@@ -44,7 +46,7 @@ let time = DEFAULT_SECONDS;
 // fetching game from database
 axios.get(`/api/v1/games/${id}`)
     .then(game => {
-        
+
         // function used to display different question each time user answers question or timer runs out
         function updateQuestion() {
             if (questionNumber < game.data.questions.length) {
@@ -52,9 +54,9 @@ axios.get(`/api/v1/games/${id}`)
                 let currentCorrect = game.data.questions[questionNumber].correct_answer;
                 let currentIncorrect = game.data.questions[questionNumber].incorrect_answers;
                 displayQuestion(currentQuestion, currentCorrect, currentIncorrect)
-            } 
+            }
         }
-        
+
         // function responsible for triggering events based on time
         function timer() {
             // if time is 0, push an incorrect answer, trigger click event, and move on to next question
@@ -65,7 +67,7 @@ axios.get(`/api/v1/games/${id}`)
                 updateQuestion();
                 time = DEFAULT_SECONDS;
                 return
-            // stop timer if game is finished
+                // stop timer if game is finished
             } else if (questionNumber > game.data.questions.length - 1) {
                 clearInterval(interval);
                 document.querySelector("#timer").innerHTML = 0;

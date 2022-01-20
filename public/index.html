@@ -19,8 +19,8 @@
           <a class="btn btn-dark me-2 d-none logged-out-only" href="./login.html">LOGIN</a>
           <a class="btn btn-dark me-2 d-none logged-out-only" href="./register.html">REGISTER</a>
           <a class="btn btn-dark me-2 d-none logged-in-only" href="./leaderboard.html">LEADERBOARD</a>
-          <a class="btn btn-dark me-2 d-none logged-in-only" href="user_profile.html">PROFILE</a>
-          <a class="btn btn-dark me-2 d-none logged-in-only" href="./index.html">LOGOUT</a>
+          <a class="btn btn-dark me-2 d-none logged-in-only" id="profile-button" href="user_profile.html">PROFILE</a>
+          <a class="btn btn-dark me-2 d-none logged-in-only" id="logout-button" href="">LOGOUT</a>
       </div>
     </div>
   </nav>  
@@ -33,7 +33,9 @@
   </div>
   <div class="container">
     <div class="center">
-      <button class="btn btn-danger" type="button" onclick="window.location.href='games.html'">PLAY</button>
+
+      <button class="btn btn-danger" type="button" id="home-play-button">PLAY</button>
+
     </div>
   </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

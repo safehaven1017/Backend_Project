@@ -1,3 +1,8 @@
+// redirect home if logged out
+if (!user) {
+    window.location = '/logout_redirect.html';
+}
+
 // get id out of URL query parameters
 const id = new URLSearchParams(location.search).get('id');
 

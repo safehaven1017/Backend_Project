@@ -12,17 +12,18 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar py-3 navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand">RNJ TRIVIA</a>
-            <div class="d-flex">
-                <a class="btn btn-primary me-2" href="./index.html">HOME</a>
-                <a class="btn btn-primary me-2 logged-out-only" href="./login.html">LOGIN</a>
-                <a class="btn btn-primary me-2 logged-out-only" href="./register.html">REGISTER</a>
-                <a class="btn btn-primary logged-out-only" href="./leaderboard.html">LEADERBOARD</a>
-                <button class="btn btn-outline-primary d-none logged-in-only">LOGOUT</button>
-                <button class="btn btn-outline-primary d-none logged-in-only">PROFILE</button>
-            </div>
+        <a class="navbar-brand">RNJ TRIVIA</a>
+        <div class="d-flex">
+            <a class="btn btn-dark me-2" href="./index.html">HOME</a>
+            <a class="btn btn-dark me-2 d-none logged-out-only" href="./login.html">LOGIN</a>
+            <a class="btn btn-dark me-2 d-none logged-out-only" href="./register.html">REGISTER</a>
+            <a class="btn btn-dark d-none logged-in-only" href="./leaderboard.html">LEADERBOARD</a>
+            <button class="btn btn-outline-primary d-none logged-in-only" href="./index.html">LOGOUT</button>
+            <button class="btn btn-outline-primary d-none logged-in-only">PROFILE</button>
+
+        </div>
         </div>
     </nav>
     
@@ -52,6 +53,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
     <script src="./javascripts/gamepage.js"></script>
+    <script src="javascripts/user.js"></script>
 </body>
 
 </html>

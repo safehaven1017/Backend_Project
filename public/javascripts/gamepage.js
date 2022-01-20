@@ -1,3 +1,8 @@
+// redirect home if logged out
+if (!user) {
+  window.location = '/logout_redirect.html';
+}
+
 axios.get('https://opentdb.com/api_category.php')
   .then(res => {
     document.querySelector('#categories').innerHTML += res.data.trivia_categories.map(category =>

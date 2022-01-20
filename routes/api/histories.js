@@ -83,24 +83,26 @@ router.get('/recent', (req, res) => {
 router.get('/leaderboard', (req, res) => {
     const page = req.query.page || 1;
     const limit = req.query.count || 20;
+    const category = req.query.category || "%";
     const offset = (page - 1) * limit;
     // find all with search params
     models.History.findAll({
         order: [['score', 'DESC'],['userPlayTime', 'ASC']],
         limit,
         offset,
-        // group: ["History.GameId", "History.id", "Game.id"],
-        // including 'Game' object model, with its own properties
         include: {
+            where: {
+                category: {
+                    [Sequelize.Op.like]: category
+                }
+            },
             include: {
                 model: models.History,
                 attributes: ['score', 'userFunRating']
             },
-            // group: ["History.GameId"],
             model: models.Game,
             // to use exclude, must use an object as value
             attributes: {
-                // include: [[Sequelize.fn('avg', Sequelize.col('History.score')), 'difficulty']],
                 exclude: ['questions']
             },
             order: [models.Game, 'category', 'DESC']
@@ -123,9 +125,15 @@ router.get('/leaderboard', (req, res) => {
 })
 // fetch all games associated with user id
 router.get('/:id', (req, res) => {
+    const category = req.query.category || "%";
     models.History.findAll({
         order: [['createdAt', 'DESC']],
         include: {
+            where: {
+                category: {
+                    [Sequelize.Op.like]: category
+                }
+            },
             model: models.Game,
             // to use exclude, must use an object as value
             attributes: {

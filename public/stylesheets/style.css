@@ -43,7 +43,7 @@
 }
 
 .trivia {
-  background-image: url("triviaIMG.jpg");
+  /* background-image: url("triviaIMG.jpg"); */
   background-size: cover;
   height: 100vh;
   background-position: center;
@@ -61,17 +61,16 @@
 
 
 .container {
-  height:300px;
+  margin-top: 10vw;
+  height:10%;
   position: relative;
 }
 
 .center {
   margin: 0;
   position: relative;
-  top: 10%;
-  left: 50%;
-  /* -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); */
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -267,4 +266,17 @@ width: 100%;
   display: flex;
   position: sticky;
   top: 0;
+}
+
+#home-play-button {
+  width: 25vw;
+  height: 17vh;
+  border-radius: 2vw;
+  font-size: 5rem;
+  text-align: center;
+  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.562);
+}
+
+.navbar.py-3.navbar-light.bg-light {
+  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.562);
 }

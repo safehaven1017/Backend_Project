@@ -13,10 +13,10 @@
 .welcomeMessage {
   position: relative;
   background-color: none;
-  color: #fdfeed;
-  left: 30%;
-  margin-top: 12%;
+  color: black;
+  margin-top: 5%;
   font-size: 3vh;
+  text-align: center;
 }
 
 #loginForm {
@@ -61,9 +61,10 @@
 
 
 .container {
-  margin-top: 10vw;
   height:10%;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .center {
@@ -73,15 +74,11 @@
   justify-content: center;
 }
 
-
-
 .navbar-nav{
   text-size-adjust: 100px;
   display: flex;
   align-items: center;
 }
-
-
 
 .main {
   display: flex;
@@ -271,7 +268,7 @@ width: 100%;
 #home-play-button {
   width: 25vw;
   height: 17vh;
-  border-radius: 2vw;
+  border-radius: 3vw;
   font-size: 5rem;
   text-align: center;
   box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.562);
@@ -279,4 +276,83 @@ width: 100%;
 
 .navbar.py-3.navbar-light.bg-light {
   box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.562);
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  width: 20vw;
+  height: 10vw;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  margin-bottom: 1vw;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border-radius: 10px;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+#cards-container {
+  padding-bottom: 2vw;
+  margin-top: 2vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.flip-card-front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/question_bg.png");
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+.flip-card-back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/answer_bg.jpeg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+.h5-question, .h5-answer {
+  font-size: 1.3vw !important;
+  margin: 10px;
 }

@@ -14,7 +14,7 @@
   position: relative;
   background-color: none;
   color: black;
-  margin-top: 5%;
+  margin-top: 2%;
   font-size: 3vh;
   text-align: center;
 }
@@ -25,9 +25,9 @@
   align-items: center;
   margin: 15% 0% 15% 45%;
   padding: 10px;
-  color: #fdfde3;
-  border: 2px solid #fdfde3;
-  box-shadow: 60px -16px #fdfde3;
+  color: black;
+  border: 2px solid orange;
+  box-shadow: 60px -16px orange;
 }
 
 
@@ -37,7 +37,7 @@
   align-items: center;
   margin: 15% 0% 15% 45%;
   padding: 10px;
-  color: #fdfde3;
+  color: black;
   border: 2px solid #fdfde3;
   box-shadow: 60px -16px #fdfde3;
 }
@@ -61,15 +61,15 @@
 
 
 .container {
-  height:10%;
+  height:80%;
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .center {
-  margin: 0;
-  position: relative;
+  margin: .5vw;
   display: flex;
   justify-content: center;
 }
@@ -281,10 +281,11 @@ width: 100%;
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
-  width: 20vw;
-  height: 10vw;
+  width: 18vw;
+  height: 9vw;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
-  margin-bottom: 1vw;
+  margin-bottom: .5vw;
+  margin-right: .5vw;
 }
 
 /* This container is needed to position the front and back side */
@@ -326,11 +327,14 @@ width: 100%;
 }
 
 #cards-container {
-  padding-bottom: 2vw;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 1vw;
   margin-top: 2vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .flip-card-front {
@@ -353,6 +357,6 @@ width: 100%;
 }
 
 .h5-question, .h5-answer {
-  font-size: 1.3vw !important;
+  font-size: 1.2vw !important;
   margin: 10px;
 }
